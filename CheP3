@@ -1,0 +1,105 @@
+[
+    {
+        "id": "d977bbf8.638468",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "c79678fc.024348",
+        "type": "inject",
+        "z": "d977bbf8.638468",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 410,
+        "y": 180,
+        "wires": [
+            [
+                "323cc4c9.994cec",
+                "c5409b3f.81f3a8"
+            ]
+        ]
+    },
+    {
+        "id": "323cc4c9.994cec",
+        "type": "function",
+        "z": "d977bbf8.638468",
+        "name": "Payload_Temp",
+        "func": "msg.headers={\n    deviceKey: \"Reb5q1DWEb0cIaZW\"\n    };\nmsg.payload=\"Temperature,,20\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 620,
+        "y": 240,
+        "wires": [
+            [
+                "90bbce3e.9f4d1"
+            ]
+        ]
+    },
+    {
+        "id": "90bbce3e.9f4d1",
+        "type": "http request",
+        "z": "d977bbf8.638468",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "url": "https://api.mediatek.com/mcs/v2/devices/D7G9tS70/datapoints.csv",
+        "tls": "",
+        "x": 810,
+        "y": 240,
+        "wires": [
+            [
+                "33f5b70a.297428",
+                "b75c8cca.92c9f"
+            ]
+        ]
+    },
+    {
+        "id": "33f5b70a.297428",
+        "type": "http response",
+        "z": "d977bbf8.638468",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 990,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "b75c8cca.92c9f",
+        "type": "debug",
+        "z": "d977bbf8.638468",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1010,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "c5409b3f.81f3a8",
+        "type": "function",
+        "z": "d977bbf8.638468",
+        "name": "Payload_humi",
+        "func": "msg.headers={\n    deviceKey: \"Reb5q1DWEb0cIaZW\"\n    };\nmsg.payload=\"humidity,,20\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 620,
+        "y": 300,
+        "wires": [
+            [
+                "90bbce3e.9f4d1"
+            ]
+        ]
+    }
+]
